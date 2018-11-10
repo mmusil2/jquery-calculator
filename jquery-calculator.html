@@ -83,14 +83,21 @@ $(document).ready(function() {
 console.log('iscalc:', iscalc);
 // Your code here...
 // global variable - second operator not intialized til operator clicked - set to false
-
+$(".number").on("click", function() {
   if (!iscalc) {
-    $(".number").on("click", function() {
+    
       console.log(iscalc);
       num1 = this.value;
       document.getElementById("first-number").innerHTML += num1;
-    });
   }
+  if (iscalc) {
+      console.log("are we working?")
+      num2 = this.value;
+      document.getElementById("second-number").innerHTML += num2;
+      console.log(num2, num1);
+    }
+  });
+  
 
 
   $(".operator").on("click", function() {
@@ -104,17 +111,9 @@ console.log('iscalc:', iscalc);
       document.getElementById("operator").innerHTML += this.value;
       iscalc = true;
       console.log(iscalc);
-
-      if (iscalc) {
-      console.log("are we working?")
-      $(".number").on("click", function() {
-      num2 = this.value;
-      document.getElementById("second-number").innerHTML += num2;
-      console.log(num2, num1);
-      });
-  } 
-    }
-  });
+}
+});
+  
 
    $("#button-equal").on("click", function() {
   document.getElementById("result").innerHTML = total;
