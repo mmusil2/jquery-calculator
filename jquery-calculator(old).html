@@ -75,23 +75,24 @@
 num1 = [];
 num2 = [];
 total = [];
-// for consistency
 
-var iscalc = false;
+iscalc = false;
 
 $(document).ready(function() {
-console.log('iscalc:', iscalc);
+
 // Your code here...
 // global variable - second operator not intialized til operator clicked - set to false
 
-  if (!iscalc) {
+  if (iscalc == false) {
     $(".number").on("click", function() {
       console.log(iscalc);
+      document.getElementById("first-number").innerHTML += this.value;
       num1 = this.value;
-      document.getElementById("first-number").innerHTML += num1;
+      console.log(num2, num1);
     });
   }
 
+  
 
   $(".operator").on("click", function() {
     if (
@@ -100,27 +101,30 @@ console.log('iscalc:', iscalc);
       this.value == 'times' ||
       this.value == 'divide'
     ) {
-      console.log(iscalc)
       document.getElementById("operator").innerHTML += this.value;
       iscalc = true;
       console.log(iscalc);
-
-      if (iscalc) {
-      console.log("are we working?")
-      $(".number").on("click", function() {
-      num2 = this.value;
-      document.getElementById("second-number").innerHTML += num2;
-      console.log(num2, num1);
-      });
-  } 
     }
   });
+
+  if (iscalc == true) {
+    console.log("are we working?")
+    $(".number").on("click", function() {
+      document.getElementById("second-number").innerHTML += this.value;
+      num2 = this.value;
+      console.log(num2, num1);
+    });
+  }
 
    $("#button-equal").on("click", function() {
   document.getElementById("result").innerHTML = total;
    });
 
+
 });
+
+
+
 
 </script>
 
