@@ -72,10 +72,49 @@
 
 <script type="text/javascript">
 
+num1 = [];
+num2 = [];
+total = [];
+// for consistency
+operator = [];
+iscalc = false;
+
 $(document).ready(function() {
 
 // Your code here...
+// global variable - second operator not intialized til operator clicked - set to false
 
+  if (iscalc == false) {
+    $(".btn").on("click", function() {
+      document.getElementById("first-number").innerHTML += this.value;
+      num1 = this.value;
+    });
+  }
+
+  
+
+  $(".btn").on("click", function() {
+    if (
+      this.value == 'plus' ||
+      this.value == 'minus' ||
+      this.value == 'times' ||
+      this.value == 'divide'
+    ) {
+      document.getElementById("operator").innerHTML += this.value;
+      iscalc = true;
+    }
+  });
+
+  if (iscalc == true) {
+    $(".btn").on("click", function() {
+      document.getElementById("second-number").innerHTML += this.value;
+      num2 = this.value;
+    });
+  }
+
+   $("#button-equal").on("click", function() {
+  document.getElementById("result").innerHTML = total;
+   });
 
 });
 
