@@ -76,7 +76,7 @@ num1 = [];
 num2 = [];
 total = [];
 // for consistency
-operator = [];
+
 iscalc = false;
 
 $(document).ready(function() {
@@ -85,15 +85,17 @@ $(document).ready(function() {
 // global variable - second operator not intialized til operator clicked - set to false
 
   if (iscalc == false) {
-    $(".btn").on("click", function() {
+    $(".number").on("click", function() {
+      console.log(iscalc);
       document.getElementById("first-number").innerHTML += this.value;
       num1 = this.value;
+      console.log(num2, num1);
     });
   }
 
   
 
-  $(".btn").on("click", function() {
+  $(".operator").on("click", function() {
     if (
       this.value == 'plus' ||
       this.value == 'minus' ||
@@ -102,13 +104,16 @@ $(document).ready(function() {
     ) {
       document.getElementById("operator").innerHTML += this.value;
       iscalc = true;
+      console.log(iscalc);
     }
   });
 
   if (iscalc == true) {
-    $(".btn").on("click", function() {
+    console.log("are we working?")
+    $(".number").on("click", function() {
       document.getElementById("second-number").innerHTML += this.value;
       num2 = this.value;
+      console.log(num2, num1);
     });
   }
 
