@@ -74,50 +74,69 @@
 
 num1 = [];
 num2 = [];
-total = [];
-// for consistency
-
+total = 0;
+operator = [];
 var iscalc = false;
 
 $(document).ready(function() {
-console.log('iscalc:', iscalc);
+
 // Your code here...
 // global variable - second operator not intialized til operator clicked - set to false
-$(".number").on("click", function() {
-  if (!iscalc) {
-    
-      console.log(iscalc);
-      num1 = this.value;
-      document.getElementById("first-number").innerHTML += num1;
-  }
-  if (iscalc) {
-      console.log("are we working?")
-      num2 = this.value;
-      document.getElementById("second-number").innerHTML += num2;
+  $(".number").on("click", function() {
+    if (!iscalc) {
+      num1 += this.value;
+      document.getElementById("first-number").innerHTML = num1;
+    }
+    if (iscalc) {
+      num2 += this.value;
+      document.getElementById("second-number").innerHTML = num2;
       console.log(num2, num1);
     }
   });
-  
-
-
+    
   $(".operator").on("click", function() {
-    if (
-      this.value == 'plus' ||
-      this.value == 'minus' ||
-      this.value == 'times' ||
-      this.value == 'divide'
-    ) {
-      console.log(iscalc)
-      document.getElementById("operator").innerHTML += this.value;
-      iscalc = true;
-      console.log(iscalc);
-}
-});
-  
+    console.log(iscalc)
+    document.getElementById("operator").innerHTML += this.value;
+    operator = this.value;
+    iscalc = true;
+    console.log(iscalc);
+  });
+    
 
-   $("#button-equal").on("click", function() {
-  document.getElementById("result").innerHTML = total;
-   });
+  $(".equal").on("click", function() {
+    num1 = parseInt(num1);
+    num2 = parseInt(num2);
+
+    if (operator == "plus") {
+      total = num1 + num2;
+    }
+    if (operator == "minus") {
+      total = num1 - num2;
+    }
+    if (operator == "times") {
+      total = num1 * num2;
+    }
+    if (operator == "divide") {
+      total = num1 / num2;
+    }
+    if (operator == "power") {
+      total = Math.pow(num1, num2);
+    }
+    console.log(operator);
+    console.log(total);
+    document.getElementById("result").innerHTML = total;
+  });
+
+  $(".clear").on("click", function() {
+    num1 = [];
+    num2 = [];
+    total = 0;
+    document.getElementById("first-number").innerHTML = "";
+    document.getElementById("second-number").innerHTML = "";
+    document.getElementById("operator").innerHTML = "";
+    document.getElementById("result").innerHTML = "";
+    iscalc = false;
+  });
 
 });
 
